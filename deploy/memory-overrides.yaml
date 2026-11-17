@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ad
+spec:
+  template:
+    spec:
+      containers:
+      - name: ad
+        resources:
+          limits:
+            memory: 600Mi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-detection
+spec:
+  template:
+    spec:
+      containers:
+      - name: fraud-detection
+        resources:
+          limits:
+            memory: 600Mi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+spec:
+  template:
+    spec:
+      containers:
+      - name: shipping
+        resources:
+          limits:
+            memory: 300Mi

@@ -38,3 +38,4 @@ patches:
   - path: deploy/strip-backends.yaml
   - path: deploy/fork-images.yaml
   - path: deploy/telemetry-env-patches.yaml
+  - path: deploy/memory-overrides.yaml
