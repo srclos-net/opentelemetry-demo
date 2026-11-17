@@ -44,9 +44,27 @@ FROM ghcr.io/grpc-ecosystem/grpc-health-probe:v0.4.61@sha256:9df7b8dfbaf01d20eae
 
 FROM mcr.microsoft.com/dotnet/runtime-deps:10.0.12-alpine3.23@sha256:ec7978b6668931a141e5a6d5b831aea858e4f8fa908ca75900299e40fb17529e
 
+ARG PYROSCOPE_DOTNET_VERSION=1.5.1
+
 WORKDIR /usr/src/app/
 COPY --from=builder /cart/ ./
 COPY --from=grpc-health-probe /ko-app/grpc-health-probe /bin/grpc_health_probe
+
+# Pyroscope continuous profiling: native CLR profiler (env-configured; the managed
+# Pyroscope NuGet package is optional and only needed for dynamic tags, which we don't
+# use). Pushes to the estate Pyroscope when PYROSCOPE_SERVER_ADDRESS is set
+# (deploy/telemetry-env-patches.yaml); PYROSCOPE_PROFILING_ENABLED=0 keeps local runs off.
+ADD https://github.com/grafana/pyroscope-dotnet/releases/download/pyroscope-$PYROSCOPE_DOTNET_VERSION/pyroscope.$PYROSCOPE_DOTNET_VERSION-musl-x86_64.tar.gz /tmp/pyroscope-profiler.tar.gz
+RUN mkdir -p /usr/share/pyroscope \
+    && tar xzf /tmp/pyroscope-profiler.tar.gz -C /usr/share/pyroscope \
+    && rm /tmp/pyroscope-profiler.tar.gz
+
+ENV PYROSCOPE_PROFILING_ENABLED=0 \
+    CORECLR_ENABLE_PROFILING=1 \
+    CORECLR_PROFILER={BD1A650D-AC5D-4896-B64F-D6FA25D6B26A} \
+    CORECLR_PROFILER_PATH=/usr/share/pyroscope/Pyroscope.Profiler.Native.so \
+    LD_PRELOAD=/usr/share/pyroscope/Pyroscope.Linux.ApiWrapper.x64.so \
+    LD_LIBRARY_PATH=/usr/share/pyroscope
 
 ENV DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false
 

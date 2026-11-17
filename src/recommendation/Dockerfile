@@ -19,10 +19,16 @@ RUN ./gradlew --no-daemon bootJar -PprotoSourceDir=./proto
 
 FROM docker.io/library/eclipse-temurin:24.0.2_12-jre@sha256:8cb2387a28af84cf0db0948d9c67d4480192f4e567027a3963f145d218e8b4f2
 
+ARG PYROSCOPE_AGENT_VERSION=2.9.2
+
 WORKDIR /usr/src/app/
 
+ADD --chmod=644 https://repo1.maven.org/maven2/io/pyroscope/agent/$PYROSCOPE_AGENT_VERSION/agent-$PYROSCOPE_AGENT_VERSION.jar /usr/src/app/pyroscope-javaagent.jar
+# Continuous profiling pushes to the estate Pyroscope when PYROSCOPE_SERVER_ADDRESS is
+# set (deploy/telemetry-env-patches.yaml); without it the agent idles harmlessly.
+ENV JAVA_TOOL_OPTIONS="-Xmx300m -XX:+ExitOnOutOfMemoryError -javaagent:/usr/src/app/pyroscope-javaagent.jar"
+
 COPY --from=builder /usr/src/app/build/libs/recommendation.jar ./recommendation.jar
-ENV JAVA_TOOL_OPTIONS="-Xmx300m -XX:+ExitOnOutOfMemoryError"
 
 ARG RECOMMENDATION_PORT=9001
 EXPOSE ${RECOMMENDATION_PORT}

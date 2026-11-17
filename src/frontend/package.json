@@ -12,6 +12,9 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.17.0",
+    "@grafana/faro-web-sdk": "2.14.0",
+    "@grafana/faro-web-tracing": "2.14.0",
+    "@pyroscope/nodejs": "0.7.1",
     "@grpc/grpc-js": "1.14.7",
     "@openfeature/flagd-provider": "0.18.0",
     "@openfeature/flagd-web-provider": "0.8.0",

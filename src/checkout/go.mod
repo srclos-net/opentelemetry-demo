@@ -5,6 +5,8 @@ go 1.26.0
 require (
 	github.com/IBM/sarama v1.61.1
 	github.com/google/uuid v1.6.0
+	github.com/grafana/otel-profiling-go v0.7.0
+	github.com/grafana/pyroscope-go v1.5.0
 	github.com/open-feature/go-sdk v1.20.0
 	github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.8
 	github.com/open-feature/go-sdk-contrib/providers/flagd v0.8.0
@@ -42,6 +44,7 @@ require (
 	github.com/fxamacker/cbor/v2 v2.7.1 // indirect
 	github.com/go-logr/logr v1.4.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/grafana/pyroscope-go/godeltaprof v0.1.12 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.31.0 // indirect
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
 	github.com/hashicorp/go-memdb v1.3.5 // indirect

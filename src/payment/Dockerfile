@@ -33,10 +33,11 @@ COPY ./pb/demo.proto demo.proto
 COPY ./src/payment/charge.js charge.js
 COPY ./src/payment/index.js index.js
 COPY ./src/payment/logger.js logger.js
+COPY ./src/payment/profiling.js profiling.js
 
 ARG PAYMENT_PORT=50051
 EXPOSE ${PAYMENT_PORT}
 
-ENV NODE_OPTIONS="--require /otel-auto-instrumentation-nodejs/autoinstrumentation.js"
+ENV NODE_OPTIONS="--require /otel-auto-instrumentation-nodejs/autoinstrumentation.js --require /usr/src/app/profiling.js"
 
 CMD ["index.js"]

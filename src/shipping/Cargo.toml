@@ -30,6 +30,7 @@ opentelemetry-otlp = "0.33.1"
 opentelemetry-instrumentation-actix-web = { version = "0.25.0", features = ["sync-middleware", "awc", "metrics"] }
 opentelemetry-appender-tracing = "0.33.1"
 opentelemetry-resource-detectors = "0.13.0"
+pyroscope = { version = "^2.1.5", features = ["backend-pprof-rs"] }
 
 [dependencies.uuid]
 version = "1.29.2"
