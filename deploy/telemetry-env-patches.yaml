@@ -1,3 +1,30 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+  namespace: otel-demo
+spec:
+  template:
+    spec:
+      containers:
+      - name: cart
+        env:
+        - name: PYROSCOPE_PROFILING_ENABLED
+          value: '1'
+        - name: PYROSCOPE_APPLICATION_NAME
+          value: cart
+        - name: PYROSCOPE_SERVER_ADDRESS
+          value: https://profiles-stephgen-medussa.observe.devopsnow.cloud
+        - name: PYROSCOPE_BASIC_AUTH_USER
+          valueFrom:
+            secretKeyRef:
+              name: pyroscope-estate
+              key: basic-auth-user
+        - name: PYROSCOPE_BASIC_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pyroscope-estate
+              key: basic-auth-password
