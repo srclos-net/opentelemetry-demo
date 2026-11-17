@@ -1,7 +1,7 @@
 # Copyright The OpenTelemetry Authors
 # SPDX-License-Identifier: Apache-2.0
 
-# Replaces the demo otel-collector ConfigMap (data key "relay") so the demo is a
+# Replaces the chart's otel-collector-agent ConfigMap (data key "relay") so the demo is a
 # pure telemetry relay — one-way merge into the estate (ObserveNow / stephgen-medussa):
 #
 #   traces + metrics + logs -> otlphttp/estate = data-recipes-traces-relay.data-recipes:4318
@@ -20,7 +20,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: otel-collector
+  name: otel-collector-agent
   namespace: otel-demo
 data:
   relay: |

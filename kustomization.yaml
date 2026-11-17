@@ -4,7 +4,7 @@
 # Deploy overlay for fe-stackgen-run (Argo CD Application in deploy/argocd.yaml).
 #
 # Base: the upstream-rendered single manifest (kubernetes/opentelemetry-demo.yaml,
-# unchanged — this fork tracks the open-telemetry/opentelemetry-demo main).
+# unchanged — this fork tracks the open-telemetry/opentelemetry-demo main (demo 3.1.0, chart 0.42.6)).
 #
 # Overlay = one-way merge. The demo generates telemetry, the estate stores it:
 #   - in-namespace Jaeger / Prometheus / OpenSearch / Grafana are deleted

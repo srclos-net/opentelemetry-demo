@@ -24,7 +24,7 @@ on:
     inputs:
       version:
         description: 'Image version tag (prefix of -<service>)'
-        default: '2.1.3-faro.1'
+        default: '3.1.0-faro.1'
         required: false
         type: string
 
@@ -97,10 +97,8 @@ jobs:
           build-args: |
             OTEL_JAVA_AGENT_VERSION=${{ env.OTEL_JAVA_AGENT_VERSION }}
             OPENTELEMETRY_CPP_VERSION=${{ env.OPENTELEMETRY_CPP_VERSION }}
-            TRACETEST_IMAGE_VERSION=${{ env.TRACETEST_IMAGE_VERSION }}
-            OPENSEARCH_IMAGE=${{ env.OPENSEARCH_IMAGE }}
           tags: |
-            ghcr.io/srclos-net/demo:${{ github.event.inputs.version || '2.1.3-faro.1' }}-${{ matrix.file_tag.tag_suffix }}
+            ghcr.io/srclos-net/demo:${{ github.event.inputs.version || '3.1.0-faro.1' }}-${{ matrix.file_tag.tag_suffix }}
             ghcr.io/srclos-net/demo:latest-${{ matrix.file_tag.tag_suffix }}
           cache-from: type=gha
           cache-to: type=gha
