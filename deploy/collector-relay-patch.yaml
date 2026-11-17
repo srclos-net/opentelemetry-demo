@@ -1,3 +1,6 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
 # Replaces the demo otel-collector ConfigMap (data key "relay") so the demo is a
 # pure telemetry relay — one-way merge into the estate (ObserveNow / stephgen-medussa):
 #

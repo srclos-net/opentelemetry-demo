@@ -1,3 +1,6 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
 # TEMPLATE only — do not commit the real credential here (this fork is public).
 #
 # Apply the real Secret out-of-band from the fe-stackgen-run estate, e.g.:

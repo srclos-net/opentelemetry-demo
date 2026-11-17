@@ -1,3 +1,6 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
 # Deploy overlay for fe-stackgen-run (Argo CD Application in deploy/argocd.yaml).
 #
 # Base: the upstream-rendered single manifest (kubernetes/opentelemetry-demo.yaml,

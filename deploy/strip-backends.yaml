@@ -1,3 +1,6 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
 # Removes the demo's own observability backends — the estate (ObserveNow on
 # eks-prod-2) is the single store for traces, metrics and logs, so keeping
 # in-namespace Jaeger/Prometheus/OpenSearch/Grafana would double the story and the

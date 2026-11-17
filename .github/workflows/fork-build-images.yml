@@ -1,3 +1,6 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
 # Fork image build: same Dockerfiles/contexts as upstream's component-build-images.yml,
 # reduced to the services this fork ships (see deploy/fork-images.yaml), GHCR-only,
 # amd64-only (the demo cluster is civo; the upstream workflow also builds arm64).
