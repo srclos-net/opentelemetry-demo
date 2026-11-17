@@ -1,0 +1,33 @@
+# Public entry for the demo storefront: demo.stackgen.run -> frontend-proxy.
+# Same pattern as the bank/trains ingresses (letsencrypt-prod, external-dns).
+# NOTE otel-demo.stackgen.run is intentionally NOT reused: it is the shared
+# SSO redirect host (oauth2-proxy callback) and its DNS record is still
+# owned by the old AWS cluster's external-dns (whose demo copy is dying —
+# every backend call 500s).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shop
+  namespace: otel-demo
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/hostname: demo.stackgen.run
+    external-dns.alpha.kubernetes.io/target: 212.2.243.121
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: demo.stackgen.run
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend-proxy
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - demo.stackgen.run
+      secretName: shop-stackgen-tls
