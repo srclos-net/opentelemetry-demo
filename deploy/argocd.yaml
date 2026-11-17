@@ -24,3 +24,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      # agent-fixtures CM is too big for client-apply's last-applied annotation
+      - ServerSideApply=true
