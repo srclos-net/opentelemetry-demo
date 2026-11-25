@@ -41,3 +41,17 @@ spec:
         resources:
           limits:
             memory: 300Mi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendation
+spec:
+  template:
+    spec:
+      containers:
+      - name: recommendation
+        resources:
+          limits:
+            memory: 1Gi
